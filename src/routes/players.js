@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   const player = await playerModel.findOne({ _id: req.params.id });
   if (!player) {
-    return res.json({ res: false });
+    return res.status(404).json({ res: "no encontrado" });
   }
   const valid = await player.comparetPassword(req.body.password);
   if (!valid) {
